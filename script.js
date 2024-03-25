@@ -1,10 +1,59 @@
-// Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
 
+addEmployeesBtn.addEventListener('click', function() {
+  let employees = [];
+  addEmployees(employees);
+});
 // Collect employee data
-const collectEmployees = function() {
-  // TODO: Get user input to create and return an array of employee objects
+const addEmployees = function(employees) {
+
+  addEmployee(employees);
+
+  let continueAdding = confirm("Do you want to add another employee?");
+  if (continueAdding) {
+    addEmployees(employees);
+  } else {
+    displayEmployeeDetails(employees);
+  }
 }
+
+function addEmployee(employees) {
+  let firstName = prompt("Enter employee's first name:");
+  let lastName = prompt("Enter employee's last name:");
+  let salary = prompt("Enter employee's salary:");
+
+  let employee = {
+      firstName: firstName,
+      lastName: lastName,
+      salary: parseFloat(salary) || 0
+  }
+  employees.push(employee);
+}
+
+  // TODO: Get user input to create and return an array of employee objects
+  function displayEmployeeDetails(employees) {
+
+    employees.sort((a, b) => {
+      if (a.lastName < b.lastName) {
+          return -1;
+      }
+      if (a.lastName > b.lastName) {
+          return 1;
+      }
+      return 0;
+    });
+  
+    const table = document.querySelector('#employee-table')
+    
+    employees.forEach((employee, index) => {
+      const row = table.insertRow(index);
+      row.innerHTML = `<td>${employee.firstName}</td><td>${employee.lastName}</td><td>${employee.salary}</td>`;
+    });
+
+    // document.body.appendChild(employeeTable);
+
+    // return employees;
+  }
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
