@@ -14,8 +14,6 @@ const addEmployees = function(employees) {
     addEmployees(employees);
   } else {
     displayEmployeeDetails(employees);
-    // displayAverageSalary(employees);
-    // getRandomEmployee(employees);
   }
 }
 
@@ -51,6 +49,8 @@ function addEmployee(employees) {
       const row = table.insertRow(index);
       row.innerHTML = `<td>${employee.firstName}</td><td>${employee.lastName}</td><td>${employee.salary}</td>`;
     });
+    trackEmployeeData (employees)
+
   }
 
 // Display the average salary
@@ -112,8 +112,8 @@ const displayEmployees = function(employeesArray) {
   }
 }
 
-const trackEmployeeData = function() {
-  const employees = collectEmployees();
+const trackEmployeeData = function(emps) {
+  const employees = emps;
 
   console.table(employees);
 
@@ -131,8 +131,8 @@ const trackEmployeeData = function() {
     }
   });
 
-  displayEmployees(employees);
+  // displayEmployees(employees);
 }
 
 // Add event listener to 'Add Employees' button
-addEmployeesBtn.addEventListener('click', trackEmployeeData);
+// addEmployeesBtn.addEventListener('click', trackEmployeeData);
